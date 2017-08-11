@@ -1,0 +1,187 @@
+[2017-08-10 23:31:53] New session launched. See log-archive.txt for previous entries
+[2017-08-10 23:32:49] [W3] Tavern: 13 places
+[2017-08-10 23:34:49] [W3] Nothing to pick
+[2017-08-10 23:38:27] [W3] Hunt launched
+[2017-08-10 23:39:20] [W15] Tavern: 13 places
+[2017-08-10 23:40:58] [W15] 2 Coin
+[2017-08-10 23:45:27] [W16] Tavern: 3 places
+[2017-08-10 23:48:16] [W16] 9 Box
+[2017-08-10 23:48:16] [W16] 2 Coin
+[2017-08-10 23:48:16] [W16] 4 Supply
+[2017-08-10 23:48:16] [W16] 14 Prod launched
+[2017-08-10 23:52:06] Done, next(quick): 5m
+[2017-08-10 23:57:31] [W3] Hunt advanced
+[2017-08-10 23:57:52] [W3] Tavern: 13 places
+[2017-08-10 23:59:51] [W3] Nothing to pick
+[2017-08-11 00:00:42] [W15] Tavern: 13 places
+[2017-08-11 00:02:13] [W15] Nothing to pick
+[2017-08-11 00:03:05] [W16] Tavern: 3 places
+[2017-08-11 00:04:35] [W16] Nothing to pick
+[2017-08-11 00:04:46] Done, next(quick): 20m
+[2017-08-11 00:25:15] [W3] Hunt advanced
+[2017-08-11 00:25:37] [W3] Tavern: 13 places
+[2017-08-11 00:27:34] [W3] Nothing to pick
+[2017-08-11 00:28:32] [W15] Tavern: 13 places
+[2017-08-11 00:30:03] [W15] Nothing to pick
+[2017-08-11 00:30:54] [W16] Tavern: 2 places
+[2017-08-11 00:32:25] [W16] Nothing to pick
+[2017-08-11 00:32:35] Done, next(quick): 20m
+[2017-08-11 00:53:19] [W3] Tavern: 13 places
+[2017-08-11 00:56:30] [W3] 9 Box
+[2017-08-11 00:56:30] [W3] 6 Supply
+[2017-08-11 00:56:30] [W3] 15 Prod launched
+[2017-08-11 00:57:22] [W15] Tavern: 13 places
+[2017-08-11 01:00:26] [W15] 16 Box
+[2017-08-11 01:00:26] [W15] 2 Coin
+[2017-08-11 01:00:26] [W15] 2 Supply
+[2017-08-11 01:00:26] [W15] 19 Prod launched
+[2017-08-11 01:01:19] [W16] Tavern: 2 places
+[2017-08-11 01:03:17] [W16] 7 Box
+[2017-08-11 01:03:17] [W16] 2 Coin
+[2017-08-11 01:03:17] [W16] 5 Prod launched
+[2017-08-11 01:03:27] Done, next(POMO): 20m
+[2017-08-11 01:24:13] [W3] Tavern: 13 places
+[2017-08-11 01:25:52] [W3] 2 Prod launched
+[2017-08-11 01:29:26] [W3] 1 BEER drunk.
+[2017-08-11 01:29:32] [W3] Hunt advanced
+[2017-08-11 01:30:30] [W15] Tavern: 12 places
+[2017-08-11 01:32:04] [W15] 1 Military unit
+[2017-08-11 01:36:20] [W16] Hunt launched
+[2017-08-11 01:36:41] [W16] Tavern cash in
+[2017-08-11 01:38:11] [W16] Nothing to pick
+[2017-08-11 01:41:49] [W16] 2 BEER drunk.
+[2017-08-11 01:41:57] [W16] Hunt advanced
+[2017-08-11 01:42:13] Done, next(quick): 5m
+[2017-08-11 01:47:54] [W3] Tavern: 13 places
+[2017-08-11 01:49:25] [W3] Nothing to pick
+[2017-08-11 01:50:10] [W15] Hunt launched
+[2017-08-11 01:50:27] [W15] Tavern: 11 places
+[2017-08-11 01:51:58] [W15] Nothing to pick
+[2017-08-11 01:52:50] [W16] Tavern: 16 places
+[2017-08-11 01:54:21] [W16] Nothing to pick
+[2017-08-11 01:54:31] Done, next(quick): 5m
+[2017-08-11 02:00:12] [W3] Tavern: 13 places
+[2017-08-11 02:01:44] [W3] Nothing to pick
+[2017-08-11 02:02:19] [W15] Hunt advanced
+[2017-08-11 02:02:40] [W15] Tavern: 11 places
+[2017-08-11 02:04:19] [W15] 2 Coin
+[2017-08-11 02:05:02] [W16] Hunt advanced
+[2017-08-11 02:05:24] [W16] Tavern: 16 places
+[2017-08-11 02:06:59] [W16] 2 Coin
+[2017-08-11 02:07:17] Done, next(quick): 20m
+[2017-08-11 02:27:59] [W3] Tavern: 10 places
+[2017-08-11 02:29:31] [W3] Nothing to pick
+[2017-08-11 02:30:06] [W15] Hunt advanced
+[2017-08-11 02:30:27] [W15] Tavern: 10 places
+[2017-08-11 02:31:59] [W15] Nothing to pick
+[2017-08-11 02:32:52] [W16] Tavern: 16 places
+[2017-08-11 02:34:22] [W16] Nothing to pick
+[2017-08-11 02:34:32] Done, next(POMO): 20m
+[2017-08-11 02:55:18] [W3] Tavern: 8 places
+[2017-08-11 02:56:49] [W3] Nothing to pick
+[2017-08-11 03:00:28] [W3] 2 BEER drunk.
+[2017-08-11 03:01:26] [W15] Tavern: 8 places
+[2017-08-11 03:02:57] [W15] Nothing to pick
+[2017-08-11 03:07:12] [W16] Hunt advanced
+[2017-08-11 03:07:34] [W16] Tavern: 16 places
+[2017-08-11 03:09:09] [W16] 2 Coin
+[2017-08-11 03:13:00] Done, next(quick): 20m
+[2017-08-11 03:33:45] [W3] Tavern: 7 places
+[2017-08-11 03:35:17] [W3] Nothing to pick
+[2017-08-11 03:35:52] [W15] Hunt advanced
+[2017-08-11 03:36:13] [W15] Tavern: 7 places
+[2017-08-11 03:37:51] [W15] 2 Coin
+[2017-08-11 03:38:44] [W16] Tavern: 14 places
+[2017-08-11 03:40:14] [W16] Nothing to pick
+[2017-08-11 03:40:25] Done, next(quick): 20m
+[2017-08-11 04:01:11] [W3] Tavern: 7 places
+[2017-08-11 04:02:43] [W3] Nothing to pick
+[2017-08-11 04:03:33] [W15] Tavern: 7 places
+[2017-08-11 04:05:04] [W15] Nothing to pick
+[2017-08-11 04:05:57] [W16] Tavern: 14 places
+[2017-08-11 04:07:28] [W16] Nothing to pick
+[2017-08-11 04:07:39] Done, next(quick): 20m
+[2017-08-11 04:28:24] [W3] Tavern: 6 places
+[2017-08-11 04:29:54] [W3] Nothing to pick
+[2017-08-11 04:30:46] [W15] Tavern: 5 places
+[2017-08-11 04:32:17] [W15] Nothing to pick
+[2017-08-11 04:33:09] [W16] Tavern: 14 places
+[2017-08-11 04:34:44] [W16] 2 Coin
+[2017-08-11 04:34:55] Done, next(POMO): 20m
+[2017-08-11 04:47:40] Paused remotely, restart in 30 min
+[2017-08-11 05:25:30] [W3] Load retry...
+[2017-08-11 05:26:12] [W3] Tavern: 6 places
+[2017-08-11 05:27:51] [W3] 1 Box
+[2017-08-11 05:27:51] [W3] 1 Prod launched
+[2017-08-11 05:31:22] [W3] 2 BEER drunk.
+[2017-08-11 05:31:28] [W3] Hunt advanced
+[2017-08-11 05:32:25] [W15] Tavern: 5 places
+[2017-08-11 05:34:10] [W15] 2 Box
+[2017-08-11 05:34:10] [W15] 2 Prod launched
+[2017-08-11 05:38:40] [W16] Tavern: 12 places
+[2017-08-11 05:42:00] [W16] 1 Box
+[2017-08-11 05:42:00] [W16] 2 Coin
+[2017-08-11 05:42:00] [W16] 2 Supply
+[2017-08-11 05:42:00] [W16] 2 Prod launched
+[2017-08-11 05:45:46] Done, next(quick): 20m
+[2017-08-11 06:06:31] [W3] Tavern: 5 places
+[2017-08-11 06:08:02] [W3] Nothing to pick
+[2017-08-11 06:08:54] [W15] Tavern: 5 places
+[2017-08-11 06:18:09] [W15] 8 Box
+[2017-08-11 06:18:09] [W15] 2 Coin
+[2017-08-11 06:19:01] [W16] Tavern: 12 places
+[2017-08-11 06:23:09] [W16] 4 Box
+[2017-08-11 06:23:20] Done, next(quick): 20m
+[2017-08-11 06:44:05] [W3] Tavern: 4 places
+[2017-08-11 06:47:12] [W3] 1 Box
+[2017-08-11 06:48:05] [W15] Tavern: 4 places
+[2017-08-11 07:18:54] [W15] 3 Box
+[2017-08-11 07:18:54] [W15] 2 Coin
+[2017-08-11 07:18:54] [W15] 1 Prod launched
+[2017-08-11 07:19:30] [W16] Hunt advanced
+[2017-08-11 07:19:52] [W16] Tavern: 11 places
+[2017-08-11 07:22:23] [W16] 2 Box
+[2017-08-11 07:22:23] [W16] 2 Coin
+[2017-08-11 07:22:23] [W16] 1 Prod launched
+[2017-08-11 07:22:34] Done, next(quick): 20m
+[2017-08-11 07:36:53] Paused remotely, restart in 30 min
+[2017-08-11 08:13:07] [W3] Load retry...
+[2017-08-11 08:13:48] [W3] Tavern: 3 places
+[2017-08-11 08:15:18] [W3] Nothing to pick
+[2017-08-11 08:15:53] [W15] Hunt advanced
+[2017-08-11 08:16:16] [W15] Tavern cash in
+[2017-08-11 08:17:46] [W15] Nothing to pick
+[2017-08-11 08:18:39] [W16] Tavern: 8 places
+[2017-08-11 08:22:43] [W16] 12 Box
+[2017-08-11 08:22:43] [W16] 1 Coin
+[2017-08-11 08:22:43] [W16] 4 Supply
+[2017-08-11 08:22:43] [W16] 15 Prod launched
+[2017-08-11 08:22:53] Done, next(POMO): 20m
+[2017-08-11 08:43:38] [W3] Tavern: 3 places
+[2017-08-11 08:45:10] [W3] Nothing to pick
+[2017-08-11 09:04:14] [W3] 201 POMO done. 
+[2017-08-11 09:04:14] [W3] 31 BEER drunk.
+[2017-08-11 09:05:13] [W15] Tavern: 16 places
+[2017-08-11 09:08:17] [W15] 16 Box
+[2017-08-11 09:08:17] [W15] 2 Coin
+[2017-08-11 09:08:17] [W15] 2 Supply
+[2017-08-11 09:08:17] [W15] 19 Prod launched
+[2017-08-11 09:26:43] [W15] 183 POMO done. 
+[2017-08-11 09:26:43] [W15] 47 BEER drunk.
+[2017-08-11 09:27:44] [W16] Tavern: 8 places
+[2017-08-11 09:30:05] [W16] 31 Box
+[2017-08-11 09:30:05] [W16] 2 Coin
+[2017-08-11 09:30:05] [W16] 5 Prod launched
+[2017-08-11 09:49:13] [W16] 200 POMO done. 
+[2017-08-11 09:49:13] [W16] 35 BEER drunk.
+[2017-08-11 09:49:31] Done, next(quick): 20m
+[2017-08-11 10:09:56] [W3] Hunt advanced
+[2017-08-11 10:10:20] [W3] Tavern cash in
+[2017-08-11 10:13:39] [W3] 8 Box
+[2017-08-11 10:13:39] [W3] 10 Supply
+[2017-08-11 10:13:39] [W3] 16 Prod launched
+[2017-08-11 10:14:31] [W15] Tavern: 13 places
+[2017-08-11 10:16:10] [W15] 2 Coin
+[2017-08-11 10:17:02] [W16] Tavern: 8 places
+[2017-08-11 10:18:34] [W16] Nothing to pick
+[2017-08-11 10:18:44] Done, next(quick): 20m

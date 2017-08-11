@@ -1,0 +1,644 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>FOE_Robot.sikuli</h2> <a href="FOE_Robot.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="cmt"># ==================== DÉFINITION DES RÉGLAGLES ==============================================================</span>
+<span class="kw">from</span> random <span class="kw">import</span> randint
+world_list = [<span class="dig">3</span>,<span class="dig">15</span>,<span class="dig">16</span>]
+Settings.ActionLogs = False
+Settings.LogTime = True
+Settings.MinSimilarity = <span class="dig">.8</span>
+setFindFailedResponse(SKIP)
+
+<span class="cmt"># ==================== DÉFINITION DES FONCTIONS ==============================================================</span>
+<span class="kw">def</span> seek_click(target,reg = SCREEN):
+        <span class="kw">if</span> current_world==<span class="dig">0</span>:
+                <span class="kw">return</span> <span class="dig">0</span>
+        <span class="kw">if</span> reg.exists(target,<span class="dig">0</span>):
+                reg.<span class="skw">click</span>(target)
+                <span class="kw">return</span> <span class="dig">1</span>
+        <span class="kw">else</span>:
+                <span class="kw">return</span> <span class="dig">0</span>
+<span class="kw">def</span> wait_click(target,timeout = FOREVER,reg = SCREEN):
+        <span class="kw">if</span> timeout == FOREVER:
+                <span class="kw">while</span> <span class="kw">not</span> reg.exists(target,<span class="dig">5</span>):
+                        <span class="kw">if</span> current_world==<span class="dig">0</span>:
+                                <span class="kw">return</span> <span class="dig">0</span>
+                        mouseMove(randint(-<span class="dig">99</span>,<span class="dig">99</span>),randint(-<span class="dig">99</span>,<span class="dig">99</span>)) <span class="cmt">#Bouge un peu la souris au cas ou la cible est cachee</span>
+                        <span class="kw">if</span> seek_click(Pattern(<img src="1483362735914.png" />).exact()):
+                                <span class="skw">wait</span>(<span class="dig">1</span>)
+                                <span class="skw">type</span>(Key.ENTER)
+                                <span class="skw">wait</span>(<span class="dig">1</span>)
+                <span class="skw">click</span>(getLastMatch())
+        <span class="kw">else</span>:
+                <span class="kw">if</span> reg.exists(target,timeout):
+                        <span class="skw">click</span>(getLastMatch())
+                        <span class="kw">return</span> <span class="dig">1</span>
+                <span class="kw">else</span>:
+                        <span class="kw">if</span> seek_click(Pattern(<img src="1483362735914.png" />).exact()):
+                                <span class="skw">wait</span>(<span class="dig">1</span>)
+                                <span class="skw">type</span>(Key.ENTER)
+                                <span class="skw">wait</span>(<span class="dig">1</span>)
+                        <span class="kw">return</span> <span class="dig">0</span>
+
+<span class="kw">def</span> log(entry = <span class="str">""</span>):
+        <span class="kw">with</span> open(<span class="str">"D:\Dropbox\Fun\FOE\Macro\FOE_Robot.sikuli\log.txt"</span>,<span class="str">"a"</span>) <span class="kw">as</span> file:
+                file.write(<span class="str">"["</span>+time.strftime(<span class="str">"%Y-%m-%d %H:%M:%S"</span>)+<span class="str">"] "</span>)
+                file.write(entry)
+                file.write(<span class="str">"\n"</span>)
+<span class="kw">def</span> clearlog():
+        <span class="kw">with</span> open(<span class="str">"D:\Dropbox\Fun\FOE\Macro\FOE_Robot.sikuli\log-archive.txt"</span>,<span class="str">"a"</span>) <span class="kw">as</span> archive, open(<span class="str">"D:\Dropbox\Fun\FOE\Macro\FOE_Robot.sikuli\log.txt"</span>,<span class="str">"r"</span>) <span class="kw">as</span> current:
+                archive.write(current.read())
+        <span class="kw">with</span> open(<span class="str">"D:\Dropbox\Fun\FOE\Macro\FOE_Robot.sikuli\log.txt"</span>,<span class="str">"w"</span>) <span class="kw">as</span> file:
+                file.write(<span class="str">"["</span>+time.strftime(<span class="str">"%Y-%m-%d %H:%M:%S"</span>)+<span class="str">"] "</span>)
+                file.write(<span class="str">"New session launched. See log-archive.txt for previous entries"</span>)
+                file.write(<span class="str">"\n"</span>)
+<span class="kw">def</span> clearRemote():
+        <span class="kw">with</span> open(<span class="str">"D:\Dropbox\Fun\FOE\Macro\FOE_Robot.sikuli\ifttt.txt"</span>,<span class="str">"w"</span>) <span class="kw">as</span> remote:
+                remote.write(<span class="str">""</span>)
+                <span class="cmt">#remote.write("Remote commands:") # Vide le fichier de remote avant de commencer</span>
+                <span class="cmt">#remote.write("\n")</span>
+
+<span class="kw">def</span> move_view(x,y,COLLECT_PROOF = <span class="dig">0</span>):
+        <span class="kw">if</span> pause_check():
+                <span class="kw">return</span>
+        <span class="kw">if</span> seek_click(Pattern(<img src="1483362735914.png" />).exact()):
+                <span class="skw">wait</span>(<span class="dig">1</span>)
+                <span class="skw">type</span>(Key.ENTER)
+                <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="kw">if</span> exists(Pattern(<img src="1479301630898.png" />).similar(<span class="dig">0.95</span>).targetOffset(<span class="dig">0</span>,<span class="dig">450</span>)):<span class="cmt"># approx center of window</span>
+                mouseMove(getLastMatch())
+                <span class="kw">if</span> COLLECT_PROOF:<span class="cmt">#On commence par un mini drag-drop pour ne pas collecter au lieu de déplacer l écran</span>
+                        mouseDown(Button.LEFT)
+                        <span class="skw">wait</span>(<span class="dig">.25</span>)
+                        mouseMove(-<span class="dig">50</span>,-<span class="dig">50</span>)
+                        <span class="skw">wait</span>(<span class="dig">.25</span>)
+                        mouseMove(getLastMatch())
+                        <span class="skw">wait</span>(<span class="dig">.25</span>)
+                        mouseUp(Button.LEFT)
+                        <span class="skw">wait</span>(<span class="dig">.25</span>)
+                <span class="cmt"># maintenant le déplacement demandé</span>
+                mouseDown(Button.LEFT)
+                mouseMove(-x,-y)
+                mouseUp(Button.LEFT)
+                <span class="kw">return</span> <span class="dig">1</span>
+        <span class="kw">else</span>:
+                <span class="kw">return</span> <span class="dig">0</span>
+<span class="kw">def</span> open_world():
+        <span class="kw">global</span> current_world
+        status.setText(<span class="str">"Ouverture de W"</span> + str(current_world))
+        <span class="kw">print</span>(<span class="str">"Started world "</span> + str(current_world) + <span class="str">" @ "</span> + time.strftime(<span class="str">"%Y-%m-%d %H:%M:%S"</span>))
+        <span class="cmt">#chrome = App("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe --new-window https://fr0.forgeofempires.com/page/")</span>
+        <span class="kw">while</span> <span class="dig">1</span>:
+                <span class="kw">if</span> current_world==<span class="dig">0</span>:
+                        <span class="kw">return</span>
+                seek_click(Pattern(<img src="1486001679249.png" />).exact())
+                chrome = App.open(<span class="str">"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe --new-window https://fr0.forgeofempires.com/page/'"</span>)
+                s=<span class="dig">10</span>
+                <span class="skw">wait</span>(<span class="dig">1</span>)
+                <span class="skw">type</span>(<span class="str">"0"</span>,Key.CTRL)
+                <span class="kw">while</span> s:
+                        <span class="kw">if</span> wait_click(Pattern(<img src="1481120160133.png" />).targetOffset(-<span class="dig">80</span>,-<span class="dig">115</span>),<span class="dig">1</span>):
+                                <span class="skw">wait</span>(<span class="dig">.25</span>)
+                                <span class="skw">type</span>(Key.DOWN)
+                                <span class="skw">wait</span>(<span class="dig">1</span>)
+                                <span class="skw">type</span>(Key.ENTER)
+                                <span class="skw">wait</span>(<span class="dig">1</span>)
+                                <span class="skw">type</span>(Key.ENTER)
+                        <span class="kw">if</span> wait_click(<img src="1476753469907.png" />,<span class="dig">1</span>):
+                                <span class="kw">break</span>
+                        s -=<span class="dig">1</span>
+                <span class="skw">wait</span>(<span class="dig">1</span>)
+                <span class="kw">if</span>  s <span class="kw">and</span> current_world == <span class="dig">3</span>: <span class="cmt">#'C':</span>
+                        s *= wait_click(Pattern(<img src="1476781840604.png" />).similar(<span class="dig">0.90</span>),<span class="dig">10</span>)
+                <span class="kw">elif</span> s <span class="kw">and</span> current_world == <span class="dig">15</span>: <span class="cmt">#'P':</span>
+                        s *= wait_click(Pattern(<img src="1476781898555.png" />).similar(<span class="dig">0.90</span>),<span class="dig">10</span>)
+                <span class="kw">elif</span> s <span class="kw">and</span> current_world == <span class="dig">16</span>: <span class="cmt">#'Q':</span>
+                        s *= wait_click(Pattern(<img src="1476781977706.png" />).similar(<span class="dig">0.90</span>),<span class="dig">10</span>)
+                <span class="kw">if</span> s:
+                        s *= wait_click(Pattern(<img src="1491750295812.png" />).targetOffset(<span class="dig">0</span>,<span class="dig">20</span>),<span class="dig">20</span>) <span class="cmt"># Attendre affichage de la ville</span>
+                <span class="kw">if</span> s:
+                        wheel(Pattern(<img src="1479301630898.png" />).similar(<span class="dig">0.95</span>).targetOffset(<span class="dig">0</span>,<span class="dig">400</span>),WHEEL_DOWN,<span class="dig">3</span>) <span class="cmt"># S'assurer que l'échelle est au plus grand</span>
+                        <span class="kw">break</span>
+                <span class="kw">else</span>:
+                        log(<span class="str">"[W"</span> + str(current_world) + <span class="str">"] Load retry..."</span>)
+                        <span class="skw">type</span>(<span class="str">"w"</span>,Key.CTRL)
+                        <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">wait</span>(<span class="dig">.5</span>)
+
+        <span class="kw">if</span> seek_click(Pattern(<img src="1491559904471.png" />).exact().targetOffset(<span class="dig">0</span>,-<span class="dig">20</span>)):<span class="cmt">#Reprendre les négociations "1491559852719.png" #--&gt; Alternative possible</span>
+                log(<span class="str">"[W"</span> + str(current_world)+<span class="str">"] Nego started..."</span>)
+                pause()
+        <span class="kw">if</span> seek_click(Pattern(<img src="1491559592013.png" />).exact().targetOffset(<span class="dig">0</span>,-<span class="dig">20</span>)):<span class="cmt">#Continuer le combat</span>
+                log(<span class="str">"[W"</span> + str(current_world)+<span class="str">"] Battle started..."</span>)
+                pause()
+
+
+        seek_click(<img src="1476785522783.png" />) <span class="cmt"># X - close popup</span>
+<span class="kw">def</span> close_world():
+        <span class="kw">global</span> current_world
+        <span class="cmt">#global chrome</span>
+        status.setText(<span class="str">"Fermeture de W"</span> + str(current_world))
+        seek_click(<img src="1477882546743.png" />)
+        seek_click(<img src="1482667306801.png" />)
+        seek_click(<img src="1476785522783.png" />)
+        wait_click(Pattern(<img src="1476785554780.png" />).exact(),<span class="dig">2</span>) <span class="cmt">#PwrOff button</span>
+        wait_click(<img src="1482202331015.png" />,<span class="dig">5</span>) <span class="cmt">#Déconnexion </span>
+        wait_click(Pattern(<img src="1476753469907.png" />).targetOffset(<span class="dig">0</span>,-<span class="dig">100</span>),<span class="dig">3</span>)
+        <span class="skw">wait</span>(<span class="dig">1</span>)
+        App.focus(<span class="str">"Forge of Empires - Google Chrome"</span>)
+        <span class="skw">type</span>(<span class="str">"w"</span>,Key.CTRL)
+        <span class="skw">wait</span>(<span class="dig">2</span>)
+<span class="kw">def</span> treasure_hunt():
+        <span class="kw">global</span> next_run
+        <span class="kw">if</span> pause_check():
+                <span class="kw">return</span>
+        status.setText(<span class="str">"W"</span> + str(current_world)+<span class="str">": Chasse aux tresors"</span>)
+        seek_click(<img src="1476784990496.png" />)
+        seek_click(<img src="1476869339766.png" />)
+        seek_click(<img src="1477938159435.png" />)
+        seek_click(<img src="1488319007746.png" />)
+        seek_click(<img src="1498122013437.png" />)
+        exists(<img src="1481796872768.png" />,<span class="dig">5</span>)
+        <span class="kw">if</span> seek_click(Pattern(<img src="1481912728830.png" />).targetOffset(-<span class="dig">20</span>,<span class="dig">0</span>)): <span class="cmt">#Ouvrir et repartir -&gt;doit être relancé dans 5 minutes</span>
+                wait_click(<img src="1476785383350.png" />)<span class="cmt"># OK - close popup</span>
+                wait_click(<img src="1482667306801.png" />,<span class="dig">1.5</span>)<span class="cmt"># OK - close popup</span>
+                <span class="kw">print</span>(<span class="str">"    Treasure hunt started in world "</span> + str(current_world) + <span class="str">" @ "</span> + time.strftime(<span class="str">"%Y-%m-%d %H:%M:%S"</span>)+<span class="str">" Waiting 5 minutes before continuing"</span>)
+                log(<span class="str">"[W"</span> + str(current_world)+<span class="str">"] Hunt launched"</span>)
+                next_run = <span class="dig">5</span> <span class="cmt"># Next run apres 5 minutes</span>
+        <span class="kw">elif</span> seek_click(Pattern(<img src="1481819304806.png" />).targetOffset(-<span class="dig">19</span>,<span class="dig">0</span>)): <span class="cmt">#Ouvrir et continuer</span>
+                <span class="kw">print</span>(<span class="str">"    Treasure hunt advanced in world "</span> + str(current_world) + <span class="str">" @ "</span> + time.strftime(<span class="str">"%Y-%m-%d %H:%M:%S"</span>))
+                log(<span class="str">"[W"</span> + str(current_world)+<span class="str">"] Hunt advanced"</span>)
+                wait_click(<img src="1476785383350.png" />)<span class="cmt"># OK - close popup</span>
+                wait_click(<img src="1482666296968.png" />,<span class="dig">1.5</span>)<span class="cmt"># OK - close popup</span>
+                wait_click(<img src="1476785522783.png" />,<span class="dig">2</span>)<span class="cmt"># X - close popup</span>
+        seek_click(<img src="1476785383350.png" />)<span class="cmt"># OK - close popup</span>
+        seek_click(<img src="1476785522783.png" />)<span class="cmt"># X - close popup</span>
+<span class="kw">def</span> POMO_full():
+        <span class="kw">if</span> pause_check():
+                <span class="kw">return</span>
+        status.setText(<span class="str">"W"</span> + str(current_world)+<span class="str">": POMO"</span>)
+        seek_click(<img src="1492459151799.png" />)<span class="cmt"># Fermer - close popup</span>
+        seek_click(Pattern(<img src="1476785522783.png" />).exact())<span class="cmt"># X - close popup</span>
+        seek_click(Pattern(<img src="1477045257278.png" />).exact())
+        move_view(-<span class="dig">800</span>,<span class="dig">400</span>)
+        move_view(-<span class="dig">800</span>,<span class="dig">400</span>)
+        <span class="skw">find</span>(Pattern(<img src="1477651422181.png" />).exact().targetOffset(<span class="dig">30</span>,-<span class="dig">50</span>))
+        contacts_bar= Region(getLastMatch().x+<span class="dig">35</span>,getLastMatch().y-<span class="dig">25</span>,<span class="dig">730</span>,<span class="dig">160</span>)
+        contacts_bar.highlight(<span class="dig">1</span>)
+        mmd = Settings.MoveMouseDelay
+        Settings.MoveMouseDelay = <span class="dig">.25</span>
+        POMO_count = <span class="dig">0</span>
+        BEER_count = <span class="dig">0</span>
+        <span class="kw">for</span> player_group <span class="kw">in</span> [<span class="str">'amis'</span>, <span class="str">'guilde'</span>, <span class="str">'voisins'</span>]:
+                seek_click(<img src="1492459151799.png" />)<span class="cmt"># Fermer - close popup</span>
+                seek_click(<img src="1476785383350.png" />)<span class="cmt"># OK - close popup</span>
+                seek_click(<img src="1482667306801.png" />) <span class="cmt"># Fermer - close popu</span>
+                seek_click(Pattern(<img src="1493020958360.png" />).exact().targetOffset(<span class="dig">0</span>,-<span class="dig">120</span>),contacts_bar)<span class="cmt"># menu contextuel - close</span>
+                <span class="kw">if</span> player_group == <span class="str">'amis'</span>:
+                        wait_click(<img src="1476799810011.png" />)
+                        status.setText(<span class="str">"W"</span> + str(current_world)+<span class="str">": POMO - Amis"</span>)
+                <span class="kw">elif</span> player_group == <span class="str">'guilde'</span>:
+                        wait_click(<img src="1476799836040.png" />)
+                        status.setText(<span class="str">"W"</span> + str(current_world)+<span class="str">": POMO - Guilde"</span>)
+                <span class="kw">elif</span> player_group == <span class="str">'voisins'</span>:
+                        wait_click(<img src="1476799858711.png" />)
+                        status.setText(<span class="str">"W"</span> + str(current_world)+<span class="str">": POMO - Voisins"</span>)
+                <span class="skw">wait</span>(<span class="dig">1</span>)
+                wait_click(Pattern(<img src="1477647782557.png" />).exact())<span class="cmt"># Atteindre la fin de la liste</span>
+                <span class="skw">wait</span>(<span class="dig">1</span>)
+                j=<span class="dig">0</span>
+                <span class="kw">while</span> j&lt;<span class="dig">22</span>:
+                        <span class="kw">if</span> pause_check():
+                                <span class="kw">break</span>
+                        <span class="kw">if</span> contacts_bar.exists(Pattern(<img src="1481797004836.png" />).similar(<span class="dig">0.90</span>),<span class="dig">1</span>):
+                                list = sorted(contacts_bar.findAll(Pattern(<img src="1481797004836.png" />).similar(<span class="dig">0.90</span>)), key=<span class="kw">lambda</span> m:m.x)
+                                <span class="kw">for</span> each <span class="kw">in</span> list:
+                                        <span class="kw">if</span> pause_check():
+                                                <span class="kw">return</span>
+                                        wait_click(<img src="1482667306801.png" />,<span class="dig">2</span>) <span class="cmt"># Fermer - close popup</span>
+                                        <span class="cmt">#seek_click("1492459151799.png")# Fermer - close popup</span>
+                                        <span class="cmt">#seek_click("1476785383350.png")# OK - close popup</span>
+                                        <span class="cmt">#seek_click(Pattern("1493020958360.png").exact().targetOffset(0,-120),contacts_bar)# menu contextuel - close</span>
+                                        <span class="skw">click</span>(each)
+                                        POMO_count += <span class="dig">1</span>
+                                <span class="skw">wait</span>(<span class="dig">1</span>)
+                                seek_click(Pattern(<img src="1482667306801.png" />).exact()) <span class="cmt"># Fermer - close popup</span>
+                                seek_click(Pattern(<img src="1492459151799.png" />).exact())<span class="cmt"># Fermer - close popup</span>
+                                seek_click(<img src="1476785383350.png" />)<span class="cmt"># OK - close popup</span>
+                                seek_click(Pattern(<img src="1493020958360.png" />).exact().targetOffset(<span class="dig">0</span>,-<span class="dig">120</span>),contacts_bar)<span class="cmt"># menu contextuel - close</span>
+                        <span class="kw">if</span> player_group == <span class="str">'amis'</span>:
+                                <span class="kw">if</span> contacts_bar.exists(Pattern(<img src="1479983497731.png" />).similar(<span class="dig">0.90</span>).targetOffset(<span class="dig">0</span>,-<span class="dig">7</span>),<span class="dig">1</span>):
+                                        list = sorted(contacts_bar.findAll(Pattern(<img src="1479983497731.png" />).similar(<span class="dig">0.90</span>).targetOffset(<span class="dig">0</span>,-<span class="dig">7</span>)), key=<span class="kw">lambda</span> m:m.x)
+                                        <span class="kw">for</span> each <span class="kw">in</span> list:
+                                                <span class="skw">click</span>(each)
+                                                BEER_count +=<span class="dig">1</span>
+                                                wait_click(Pattern(<img src="1482667306801.png" />).similar(<span class="dig">0.80</span>),<span class="dig">5</span>) <span class="cmt"># Fermer - close popup</span>
+                                                seek_click(Pattern(<img src="1492459151799.png" />).exact())<span class="cmt"># X - close popup</span>
+                                        <span class="skw">wait</span>(<span class="dig">1</span>)
+                        <span class="kw">if</span> contacts_bar.exists(Pattern(<img src="1481798353811.png" />).exact(),<span class="dig">0</span>):
+                                <span class="kw">break</span> <span class="cmt"># if first in list is found, don t continue</span>
+                        wait_click(Pattern(<img src="1477647886523.png" />).exact()) <span class="cmt">#Previous page </span>
+                        j+=<span class="dig">1</span>
+        Settings.MoveMouseDelay = mmd
+        <span class="kw">if</span> POMO_count:
+                log(<span class="str">"[W"</span> + str(current_world)+<span class="str">"] "</span> + str(POMO_count) + <span class="str">" POMO done. "</span>)
+        <span class="kw">if</span> BEER_count:
+                log(<span class="str">"[W"</span> + str(current_world)+<span class="str">"] "</span> + str(BEER_count) + <span class="str">" BEER drunk."</span>)
+        wait_click(<img src="1477571713803.png" />)
+<span class="kw">def</span> tavern():
+        <span class="kw">if</span> pause_check():
+                <span class="kw">return</span>
+        status.setText(<span class="str">"W"</span> + str(current_world)+<span class="str">": Service de la Taverne"</span>)
+        move_view(-<span class="dig">800</span>,-<span class="dig">400</span>,<span class="dig">1</span>)
+        move_view(-<span class="dig">800</span>,-<span class="dig">400</span>)
+        <span class="kw">if</span> seek_click(Pattern(<img src="1479984544343.png" />).targetOffset(<span class="dig">0</span>,<span class="dig">170</span>)):
+                <span class="kw">if</span> wait_click(<img src="1481796612169.png" />,<span class="dig">5</span>):
+                        empty_chairs = <span class="dig">0</span>
+                        <span class="kw">if</span> exists(Pattern(<img src="1480992060925.png" />).exact()):
+                                mm = findAll(Pattern(<img src="1480992060925.png" />).exact())
+                                <span class="kw">for</span> m <span class="kw">in</span> mm:
+                                        empty_chairs +=<span class="dig">1</span>
+                        <span class="kw">if</span> empty_chairs &lt; <span class="dig">2</span>:
+                                <span class="kw">if</span> seek_click(<img src="1481796684024.png" />):
+                                        log(<span class="str">"[W"</span> + str(current_world)+<span class="str">"] Tavern cash in"</span>)
+                        <span class="kw">else</span>:
+                                log(<span class="str">"[W"</span> + str(current_world)+<span class="str">"] Tavern: "</span> + str(empty_chairs) + <span class="str">" places"</span>)
+                wait_click(<img src="1476785522783.png" />)
+
+<span class="kw">def</span> collect(target,reg= SCREEN):
+        <span class="cmt">#if pause_check():</span>
+        <span class="cmt">#       return 0</span>
+        <span class="cmt">#reg.highlight(1)</span>
+        count=<span class="dig">0</span>
+        loops=<span class="dig">0</span>
+        dy=<span class="dig">0</span>
+        <span class="kw">while</span> reg.exists(target,<span class="dig">3</span>) <span class="kw">and</span> loops&lt;<span class="dig">6</span>:
+                <span class="kw">if</span> loops &gt; <span class="dig">0</span>:
+                        dy += <span class="dig">10</span>
+                list = reg.findAll(target)
+                <span class="kw">if</span> <span class="kw">not</span> list == None:
+                        list = sorted(list, key=<span class="kw">lambda</span> m:m.x)
+                        drag(list[<span class="dig">0</span>].getTarget().above(dy))
+                        <span class="kw">for</span> each <span class="kw">in</span> list:
+                                hover(each)
+                                count+=<span class="dig">1</span>
+                        dropAt(getLastMatch())
+                loops +=<span class="dig">1</span>
+                seek_click(Pattern(<img src="1482262392369-2.png" />).similar(<span class="dig">0.80</span>))
+                seek_click(Pattern(<img src="1476785522783-2.png" />).exact())
+        <span class="kw">return</span> count
+
+<span class="kw">def</span> launch_prod(target,option = Pattern(<img src="1482230896918.png" />).exact(),reg=SCREEN):
+        <span class="cmt">#if pause_check():</span>
+        <span class="cmt">#       return 0</span>
+        mmd = Settings.MoveMouseDelay
+        Settings.MoveMouseDelay = <span class="dig">.25</span>
+        <span class="cmt">#reg.highlight(1)</span>
+        count=<span class="dig">0</span>
+        launch_error=<span class="dig">0</span>
+        <span class="kw">while</span> reg.exists(target,<span class="dig">1</span>) <span class="kw">and</span> launch_error &lt; <span class="dig">5</span>:
+                list = findAll(target.similar(<span class="dig">0.50</span>))
+                <span class="kw">if</span> <span class="kw">not</span> list == None:
+                        <span class="kw">for</span> each <span class="kw">in</span> list:
+                                <span class="skw">click</span>(each)
+                                <span class="kw">if</span> exists(Pattern(<img src="1482230675160-1.png" />).exact(),<span class="dig">4</span>):
+                                        prod_title = Region(getLastMatch().x-<span class="dig">700</span>,getLastMatch().y-<span class="dig">20</span>,<span class="dig">720</span>,<span class="dig">50</span>)
+                                        <span class="cmt">#prod_title.highlight(1)</span>
+                                        <span class="kw">if</span> seek_click(Pattern(<img src="1483896950530-1.png" />).exact(),prod_title) <span class="kw">or</span> seek_click(Pattern(<img src="1483897020289-1.png" />).exact(),prod_title) <span class="kw">or</span> seek_click(Pattern(<img src="1483897062260-1.png" />).exact(),prod_title) <span class="kw">or</span> seek_click(Pattern(<img src="1488318799094.png" />).exact(),prod_title) <span class="kw">or</span> seek_click(Pattern(<img src="1492994678597.png" />).exact(),prod_title): <span class="cmt">#</span>
+                                                seek_click(Pattern(<img src="1483892809767-1.png" />).exact())
+                                                <span class="skw">wait</span>(<span class="dig">.25</span>)
+                                        <span class="kw">else</span>:
+                                                <span class="kw">if</span> wait_click(option,<span class="dig">1</span>): <span class="cmt"># launch option (time)</span>
+                                                        <span class="skw">wait</span>(<span class="dig">.25</span>)
+                                                        <span class="kw">if</span> exists(option,<span class="dig">.25</span>):
+                                                                seek_click(<img src="1482230675160.png" />)
+                                                                launch_error += <span class="dig">1</span>
+                                                        <span class="kw">else</span>:
+                                                                count += <span class="dig">1</span>
+                                                <span class="kw">elif</span> wait_click(Pattern(<img src="1482230896918.png" />).exact(),<span class="dig">1</span>): <span class="cmt"># if choosen time option is not availible, choose 8h</span>
+                                                        <span class="skw">wait</span>(<span class="dig">.25</span>)
+                                                        <span class="kw">if</span> exists(Pattern(<img src="1482230896918.png" />).exact(),<span class="dig">.25</span>):
+                                                                seek_click(Pattern(<img src="1482230675160.png" />).exact())<span class="cmt"># "X"</span>
+                                                                launch_error += <span class="dig">1</span>
+                                                        <span class="kw">else</span>:
+                                                                count += <span class="dig">1</span>
+                                <span class="kw">else</span>:
+                                        launch_error += <span class="dig">1</span>
+                                seek_click(Pattern(<img src="1482230675160.png" />).exact())<span class="cmt"># "X"</span>
+
+        Settings.MoveMouseDelay = mmd
+        <span class="kw">return</span> count
+
+<span class="kw">def</span> screen_collect_and_launch():<span class="cmt">#(box_picked,coin_picked,supply_picked,prod_launched):</span>
+        <span class="kw">global</span> box_picked
+        <span class="kw">global</span> coin_picked
+        <span class="kw">global</span> supply_picked
+        <span class="kw">global</span> prod_launched
+        <span class="kw">global</span> robery_cleared
+        <span class="kw">global</span> militaty_picked
+        <span class="kw">if</span> pause_check():
+                <span class="kw">return</span>
+        status.setText(<span class="str">"W"</span> + str(current_world)+<span class="str">": Recolte - Militaires"</span>)
+        militaty_picked += collect(<img src="1494790916031.png" />)<span class="cmt">#militaryPattern("1488319168166.png").similar(0.80).targetOffset(0,80)</span>
+        status.setText(<span class="str">"W"</span> + str(current_world)+<span class="str">": Recolte - Pillages"</span>)
+        robery_cleared += collect(Pattern(<img src="1489077703725.png" />).targetOffset(<span class="dig">0</span>,<span class="dig">90</span>))<span class="cmt">#probery (thunder icon)</span>
+        status.setText(<span class="str">"W"</span> + str(current_world)+<span class="str">": Recolte - Boites"</span>)
+        box_picked += collect(Pattern(<img src="1476976977709-1.png" />).similar(<span class="dig">0.80</span>).targetOffset(<span class="dig">0</span>,<span class="dig">80</span>))
+        status.setText(<span class="str">"W"</span> + str(current_world)+<span class="str">": Recolte - Pieces"</span>)
+        coin_picked += collect(Pattern(<img src="1476977050669-1.png" />).similar(<span class="dig">0.75</span>).targetOffset(<span class="dig">10</span>,<span class="dig">79</span>))
+        status.setText(<span class="str">"W"</span> + str(current_world)+<span class="str">": Recolte - Marchandises"</span>)
+        supply_picked += collect(Pattern(<img src="1482292482984.png" />).similar(<span class="dig">0.80</span>).targetOffset(-<span class="dig">3</span>,<span class="dig">90</span>))
+        status.setText(<span class="str">"W"</span> + str(current_world)+<span class="str">": Lancement des productions"</span>)
+        prod_launched += launch_prod(Pattern(<img src="1482460710090.png" />).similar(<span class="dig">0.65</span>).targetOffset(<span class="dig">0</span>,<span class="dig">80</span>))
+
+<span class="kw">def</span> city_walkaround():
+        <span class="kw">global</span> box_picked
+        <span class="kw">global</span> coin_picked
+        <span class="kw">global</span> supply_picked
+        <span class="kw">global</span> prod_launched
+        <span class="kw">global</span> robery_cleared
+        <span class="kw">global</span> militaty_picked
+        <span class="kw">if</span> pause_check():
+                <span class="kw">return</span> <span class="dig">0</span>
+        box_picked = <span class="dig">0</span>
+        coin_picked = <span class="dig">0</span>
+        supply_picked = <span class="dig">0</span>
+        prod_launched = <span class="dig">0</span>
+        robery_cleared = <span class="dig">0</span>
+        militaty_picked = <span class="dig">0</span>
+        <span class="cmt">#wait(1)</span>
+        <span class="skw">type</span>(<span class="str">" "</span>,Key.ALT)
+        <span class="skw">wait</span>(<span class="dig">.5</span>)
+        <span class="skw">type</span>(<span class="str">"x"</span>) <span class="cmt">#maximize windows</span>
+        <span class="skw">wait</span>(<span class="dig">.5</span>)
+        SCREEN.setH(SCREEN.h - <span class="dig">150</span>)
+        SCREEN.setW(SCREEN.w - <span class="dig">150</span>)
+        SCREEN.setX(<span class="dig">100</span>)
+        SCREEN.highlight(<span class="dig">2</span>)
+        seek_click(Pattern(<img src="1477571713803-2.png" />).exact())
+        tavern()
+        move_view(<span class="dig">450</span>,<span class="dig">100</span>)
+        move_view(<span class="dig">450</span>,<span class="dig">100</span>)
+        seek_click(Pattern(<img src="1477571713803-2.png" />).exact())
+        screen_collect_and_launch()
+        move_view(<span class="dig">0</span>,<span class="dig">300</span>)
+        move_view(<span class="dig">0</span>,<span class="dig">300</span>)
+        screen_collect_and_launch()
+        move_view(<span class="dig">500</span>,<span class="dig">0</span>)
+        move_view(<span class="dig">500</span>,<span class="dig">0</span>)
+        screen_collect_and_launch()
+        move_view(<span class="dig">0</span>,-<span class="dig">300</span>)
+        move_view(<span class="dig">0</span>,-<span class="dig">300</span>)
+        screen_collect_and_launch()
+        <span class="skw">wait</span>(<span class="dig">1</span>)
+        counters=[robery_cleared,militaty_picked,box_picked,coin_picked,supply_picked,prod_launched]
+        units=[<span class="str">" Robery"</span>,<span class="str">" Military unit"</span>,<span class="str">" Box"</span>,<span class="str">" Coin"</span>,<span class="str">" Supply"</span>,<span class="str">" Prod launched"</span>]
+        log_entries=<span class="dig">0</span>
+        <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">1</span>,<span class="dig">6</span>):
+                <span class="kw">if</span> counters[i]:
+                        log(<span class="str">"[W"</span>+str(current_world)+<span class="str">"] "</span>+str(counters[i])+units[i])
+                        log_entries+=<span class="dig">1</span>
+        <span class="kw">if</span> <span class="kw">not</span> log_entries:
+                log(<span class="str">"[W"</span>+str(current_world)+<span class="str">"] Nothing to pick"</span>)
+        <span class="skw">type</span>(<span class="str">" "</span>,Key.ALT)
+        <span class="skw">type</span>(<span class="str">"r"</span>) <span class="cmt">#restore windows size</span>
+        SCREEN.setH(SCREEN.h + <span class="dig">150</span>)
+        SCREEN.setW(SCREEN.w + <span class="dig">150</span>)
+        SCREEN.setX(<span class="dig">0</span>)
+
+<span class="kw">def</span> pause_check():
+        <span class="kw">global</span> current_world
+        <span class="kw">global</span> next_run
+        <span class="kw">if</span> current_world == <span class="dig">0</span>:
+                <span class="kw">return</span> <span class="dig">1</span>
+        <span class="kw">if</span> seek_click(Pattern(<img src="1491312792534.png" />).exact()): <span class="cmt">#fenêtre qui apparait car connecté ailleur</span>
+                log(<span class="str">"[W"</span>+str(current_world)+<span class="str">"Connection lost, restart in 30 min"</span>)
+                status.setText(<span class="str">"W"</span> + str(current_world)+<span class="str">": Connection lost"</span>)
+                next_run = <span class="dig">30</span>
+                <span class="cmt">#close_world()</span>
+                App.focus(<span class="str">"Forge of Empires - Google Chrome"</span>)
+                <span class="skw">type</span>(<span class="str">"w"</span>,Key.CTRL)
+                current_world = <span class="dig">0</span>
+                msg.setText(<span class="str">"SCRIPT MIS EN PAUSE - Prochaine exécution dans "</span> + str(next_run) + <span class="str">" minutes."</span>)
+                msg.setBackground(JC.green)
+                <span class="kw">return</span> <span class="dig">1</span>
+
+        <span class="kw">with</span> open(<span class="str">"D:\Dropbox\Fun\FOE\Macro\FOE_Robot.sikuli\ifttt.txt"</span>,<span class="str">"r+"</span>) <span class="kw">as</span> remote_file:
+                <span class="kw">if</span> <span class="str">"PAUSE"</span> <span class="kw">in</span> remote_file:
+                        remote_file.write(<span class="str">""</span>)
+                        log(<span class="str">"Pause requested remotely, restart in 30 min"</span>)
+                        status.setText(<span class="str">"Pause requested remotely"</span>)
+                        next_run = <span class="dig">30</span>
+                        <span class="cmt">#close_world()</span>
+                        App.focus(<span class="str">"Forge of Empires - Google Chrome"</span>)
+                        <span class="skw">type</span>(<span class="str">"w"</span>,Key.CTRL)
+                        current_world = <span class="dig">0</span>
+                        msg.setText(<span class="str">"SCRIPT MIS EN PAUSE (remote) - Prochaine exécution dans "</span> + str(next_run) + <span class="str">" minutes."</span>)
+                        msg.setBackground(JC.green)
+                        resumeButton.setEnabled(True)
+                        <span class="kw">return</span> <span class="dig">1</span>
+
+
+<span class="kw">def</span> pause_click(event):
+        pause()
+
+<span class="kw">def</span> pause():
+        <span class="kw">global</span> next_run
+        <span class="kw">global</span> current_world
+        <span class="cmt">#global chrome</span>
+        <span class="kw">if</span> current_world == <span class="dig">0</span>:
+                next_run += <span class="dig">30</span>
+                countdown=<span class="dig">0</span>
+                status.setText(<span class="str">"30 minutes ajoutees"</span>)
+                log(<span class="str">"30 min delay ..."</span>)
+                msg.setText(<span class="str">"SCRIPT EN VEILLE - Prochaine execution dans "</span> + str(next_run) + <span class="str">" minutes."</span>)
+                msg.setBackground(JC.green)
+        <span class="kw">else</span>:
+                next_run = <span class="dig">30</span>
+                current_world = <span class="dig">0</span>
+                log(<span class="str">"waiting 30 min ..."</span>)
+                msg.setText(<span class="str">"SCRIPT MIS EN PAUSE - Prochaine exécution dans "</span> + str(next_run) + <span class="str">" minutes."</span>)
+                msg.setBackground(JC.green)
+                resumeButton.setEnabled(True)
+                App.focus(<span class="str">"Forge of Empires - Google Chrome"</span>)
+                <span class="skw">type</span>(<span class="str">"w"</span>,Key.CTRL)
+
+<span class="kw">def</span> resume(event):
+        <span class="kw">global</span> next_run
+        <span class="kw">global</span> countdown
+        next_run = <span class="dig">0</span>
+        countdown = <span class="dig">0</span>
+
+<span class="cmt"># ===================== DÉFINITION DU MESSAGE D AVERTISSEMENT DE SCRIPT EN EXÉCUTION =============</span>
+<span class="kw">from</span> javax.swing <span class="kw">import</span> JFrame, JTextArea, JButton, JPanel
+<span class="kw">from</span> java.awt <span class="kw">import</span> Color <span class="kw">as</span> JC
+<span class="kw">from</span> java.awt <span class="kw">import</span> Font <span class="kw">as</span> JFONT
+
+box = JFrame(<span class="str">'FOE Robot'</span>, defaultCloseOperation = JFrame.EXIT_ON_CLOSE)
+box.setAlwaysOnTop(True)
+layout = JPanel()
+layout.setLayout(None)
+box.add(layout)
+msg = JTextArea(<span class="str">"ATTENTION - SCRIPT EN COURS D'EXECUTION - VEUILLEZ EVITER DE TOUCHER A LA SOURIS"</span>); <span class="cmt">#\n</span>
+msg.setEditable(False)
+msg.setBackground(JC.yellow)
+msg.setFont(JFONT(<span class="str">"Dialog"</span>, JFONT.PLAIN, <span class="dig">25</span>))
+msg.setBounds(<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">1250</span>,<span class="dig">50</span>)
+layout.add(msg)
+status = JTextArea(text = <span class="str">""</span>); <span class="cmt">#\n</span>
+status.editable = False
+status.wrapStyleWord = True
+status.lineWrap = True
+status.setBackground(JC.white)
+status.setFont(JFONT(<span class="str">"Dialog"</span>, JFONT.PLAIN, <span class="dig">15</span>))
+status.setBounds(<span class="dig">1550</span>,<span class="dig">0</span>,<span class="dig">250</span>,<span class="dig">50</span>)
+layout.add(status)
+pauseButton = JButton(<span class="str">'Pause (+30 min.)'</span>,actionPerformed = pause_click)
+pauseButton.setBounds(<span class="dig">1250</span>,<span class="dig">0</span>,<span class="dig">150</span>,<span class="dig">50</span>)
+layout.add(pauseButton)
+resumeButton = JButton(<span class="str">'Lancer maintenant'</span>,actionPerformed = resume)
+resumeButton.setBounds(<span class="dig">1400</span>,<span class="dig">0</span>,<span class="dig">150</span>,<span class="dig">50</span>)
+layout.add(resumeButton)
+box.pack()
+box.setSize(<span class="dig">1800</span>, <span class="dig">100</span>)
+box.setLocation(<span class="dig">0</span>,<span class="dig">0</span>)
+box.visible = True
+
+<span class="cmt"># ============================== DÉBUT DU PROGRAMME =========================================================</span>
+current_world=<span class="dig">0</span>
+POMO_skip=<span class="dig">0</span>
+next_run = <span class="dig">.25</span>
+clearlog()
+clearRemote()
+
+<span class="kw">while</span> <span class="dig">1</span>:
+        resumeButton.setEnabled(True)
+        status.setText(<span class="str">" "</span>)
+        <span class="kw">while</span> next_run &gt; <span class="dig">0</span>:
+                countdown= min(<span class="dig">60</span>,<span class="dig">60</span>*next_run)
+                <span class="kw">while</span> countdown&gt;<span class="dig">0</span>:
+                        <span class="kw">if</span> next_run &gt; <span class="dig">1</span>:
+                                msg.setBackground(JC.green)
+                                msg.setText(<span class="str">"SCRIPT EN VEILLE - Prochaine execution dans "</span> + str(next_run) + <span class="str">" minutes."</span>)
+                        <span class="kw">else</span>:
+                                msg.setBackground(JC.yellow)
+                                msg.setText(<span class="str">"ATTENTION ! LE SCRIPT SE LANCERA DANS "</span> + str(countdown) + <span class="str">" SECONDES."</span>)
+                        <span class="skw">wait</span>(<span class="dig">1</span>)
+                        countdown -=<span class="dig">1</span>
+                        <span class="kw">with</span> open(<span class="str">"D:\Dropbox\Fun\FOE\Macro\FOE_Robot.sikuli\ifttt.txt"</span>,<span class="str">"r+"</span>) <span class="kw">as</span> remote_file:
+                                <span class="kw">if</span> <span class="str">"PAUSE"</span> <span class="kw">in</span> remote_file:
+                                        remote_file.write(<span class="str">""</span>)
+                                        next_run += <span class="dig">30</span>
+                                        msg.setText(<span class="str">"SCRIPT MIS EN PAUSE (remote) - Prochaine exécution dans "</span> + str(next_run) + <span class="str">" minutes."</span>)
+                                        log(<span class="str">"Paused remotely, restart in 30 min"</span>)
+                                        status.setText(<span class="str">"Pause requested remotely"</span>)
+                                <span class="kw">if</span> <span class="str">"RESUME"</span> <span class="kw">in</span> remote_file:
+                                        remote_file.write(<span class="str">""</span>)
+                                        next_run = <span class="dig">1</span>
+                                        countdown = <span class="dig">20</span>
+                                        log(<span class="str">"Resumed remotely..."</span>)
+                                        msg.setBackground(JC.yellow)
+                                        msg.setText(<span class="str">"ATTENTION ! LE SCRIPT SE LANCERA DANS "</span> + str(countdown) + <span class="str">" SECONDES."</span>)
+                                        status.setText(<span class="str">"Resumed remotely"</span>)
+                        <span class="kw">if</span> next_run &lt;= <span class="dig">0</span>:
+                                <span class="kw">break</span>
+                next_run -= <span class="dig">1</span>
+        next_run = <span class="dig">20</span>
+        msg.setText(<span class="str">"ATTENTION - SCRIPT EN COURS D'EXECUTION - VEUILLEZ EVITER DE TOUCHER A LA SOURIS"</span>)
+        msg.setBackground(JC.red)
+        resumeButton.setEnabled(False)
+
+        <span class="kw">for</span> current_world <span class="kw">in</span> world_list:
+                open_world()
+                treasure_hunt()
+                city_walkaround()
+                <span class="kw">if</span> <span class="kw">not</span> POMO_skip:
+                        POMO_full()
+                        treasure_hunt()
+                <span class="kw">if</span> pause_check():
+                        <span class="kw">break</span>
+                close_world()
+        <span class="kw">if</span> current_world : <span class="cmt"># pas égal 0 donc pas interrompu</span>
+                <span class="kw">if</span> <span class="kw">not</span> POMO_skip:
+                        POMO_skip = <span class="dig">3</span>
+                <span class="kw">else</span>:
+                        POMO_skip -= <span class="dig">1</span>
+                <span class="kw">if</span> <span class="kw">not</span> POMO_skip:
+                        log(<span class="str">"Done, next(POMO): "</span> + str(next_run) + <span class="str">"m"</span>)
+                <span class="kw">else</span>:
+                        log(<span class="str">"Done, next(quick): "</span> + str(next_run) + <span class="str">"m"</span>)
+        current_world = <span class="dig">0</span>
+<span class="cmt">#End of while 1 loop --&gt; start again</span>
+
+</pre>
+</body>
+</html>
